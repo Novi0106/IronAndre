@@ -1,0 +1,33 @@
+
+Data source
+
+The data source that I initially choose was: http://aided.apps.eea.europa.eu/?source=%7B%22query%22%3A%7B%22bool%22%3A%7B%22must%22%3A%5B%7B%22term%22%3A%7B%22CountryOrTerritory%22%3A%22Germany%22%7D%7D%5D%7D%7D%2C%22display_type%22%3A%22tabular%22%2C%22from%22%3A10%7D. Essentially, it includes all relevant European data collected by the European Environmental Agency.
+
+Unfortunately, the data set is too darn big for me to import to Excel or Google Sheets.
+
+Alternatively, https://luftdaten.berlin.de/lqi works fine for Berlin only, but has the following advantages:
+- It includes all relevant station data on relevant pollution metrics, including overall quality + it's median
+- It follows a governmental standard, so data will likely be comparable between different cities in Germany, and potentially with other European cities.
+- Data will likely need little cleansing because it follows the standard
+
+As an alternative to this source I found https://aqicn.org/city/germany/berlin/, which is a larger international data set. It is wider in scope, but will likely require more cleansing.
+
+
+What questions can this data answer?
+
+- What is the overall air quality in the city?
+- Where in the city is the overall air quality lower than the average?
+- Where do we see high risk areas with a lot particle XY in the air?
+- Where are citizens more likely to catch respiratory diseases?
+
+
+What is the format of the data you have found?
+
+- It's both in an HTML as well as exportable .CSV format. Unfortunately the CSV for the European data set is pretty huge. So no good for an excel import.
+
+Will the data need cleaning?
+
+- All sources follow a specific standard i.e. air quality index, specific particles etc. They will likely need little cleaning to be comparable to other sources. However, some data sets might have more extensive analysis included e.g. median, variance. In order to makes those comparable to other data sets, we would put some work into "cleaning" the respective data sets.
+
+Can I feasibly join this data with other sources of data I have collected?
+- If cleaned properly in the sense that I find a common table structure i.e. name the columns and elements accordingly, I can. Most of the data follows said standards anyhow.
