@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>sakila</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>6954207335203041666</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApYc3RhZmZfaWTSIiMxMl8QD05TTXV0YWJs
+			ZVN0cmluZ6MxMydYTlNTdHJpbmfSIiM1Nl5OU011dGFibGVBcnJh
+			eaM1NydXTlNBcnJhedIiIyY5oiYnAAgAEQAaACQAKQAyADcASQBM
+			AFEAUwBhAGcAbgB2AIEAiACMAI4AkACSAJYAmACaAJwAngCjAKgA
+			rQDWAN0A3gDfAOEA5gDxAPoBEAEUASEBKgEvATEBMwE1AToBRAFG
+			AU8BVAFmAWoBcwF4AYcBiwGTAZgAAAAAAAACAQAAAAAAAAA6AAAA
+			AAAAAAAAAAAAAAABmw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {707, 792}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>-- Lab 2.5
+-- Select all the actors with the first name ‘Scarlett’.
+select
+	*
+from
+	actor
+where
+	first_name = "Scarlett";
+
+-- How many films (movies) are available for rent and how many films have been rented?
+
+-- Rentable movies (not copies)
+
+select
+	count(distinct film_id) as rentable_movies
+from
+	inventory;
+	
+-- Total rentals
+
+select
+	count(distinct rental_id) as total_rentals
+from
+	rental;
+	
+-- What are the shortest and longest movie duration?
+select
+	min(length) as min_duration,
+	max(length) as max_duration
+from
+	film;
+	
+-- What's the average movie duration expressed in format (hours, minutes)?
+SELECT
+	floor(avg((length/60))) as duration_hours,
+	floor(avg(length % 60)) as duration_minutes
+from
+	film;
+
+-- How many distinct (different) actors' last names are there?
+select
+	count(distinct last_name)
+from
+	actor;	
+
+
+-- Since how many days has the company been operating (check DATEDIFF() function)?
+-- Taking as the assumption that they still operate today. Taking the first customer registration as the start of operations.
+select
+	DATEDIFF(CURDATE(), min(create_date)) AS days_operating
+from
+	customer;
+	
+-- Show rental info with additional columns month and weekday. Get 20 results.
+select
+	*,
+	date_format(rental_date, '%M') as month,
+	date_format(rental_date, '%W') as weekday
+from
+	rental
+limit 20;
+
+-- Add an additional column day_type with values 'weekend' and 'workday' depending on the rental day of the week.
+with w as(
+select
+	rental_id,
+	date_format(rental_date, '%M') as month,
+	date_format(rental_date, '%W') as weekday
+from
+	rental)
+	
+select
+	rental_id,
+	weekday,
+	Case
+		when weekday = 'Saturday' or weekday = 'Sunday' then 'Weekend'
+		else 'Weekday'
+		end as 'day_type'
+from
+	w;
+	
+	
+select
+	count(distinct rental_id) as rentals,
+	date_format(rental_date, '%M') as month,
+	date_format(rental_date, '%Y') as year
+from
+	rental
+group by
+	year, month
+order by
+	year desc;
+	
+-- Lab 2.6
+
+-- Get release years
+
+select
+	release_year
+from
+	film;
+	
+-- Get films with ARMAGEDDON in title
+	
+select
+	*
+from
+	film
+where
+	title like "%ARMAGEDDON%";
+	
+-- Get all films which title ends with APOLLO.
+
+select
+	*
+from
+	film
+where
+	title like "%APOLLO";
+	
+-- Get 10 the longest films.
+
+select
+	*
+from
+	film
+order by
+	length desc
+limit 10;
+
+-- How many films include Behind the Scenes content?
+select
+	count(film_id) as behind_the_scenes
+from
+	film
+where
+	special_features like '%Behind the Scenes%';
+	
+-- Drop column picture from staff.
+alter table staff
+drop column picture;
+
+-- A new person is hired to help Jon. Her name is TAMMY SANDERS, and she is a customer. Update the database accordingly.
+select * from customer where first_name = 'Tammy'; #check entry for tammy
+
+select * from staff; #check table structure fro staff
+
+insert into staff (staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update) #add values to staff table
+values (3, 'TAMMY', 'SANDERS',79,'TAMMY.SANDERS@sakilastaff.org', 2, 1, 'TAMMY', 'password',CURDATE());
+
+select * from staff; #check for result
+
+-- Add rental for movie "Academy Dinosaur" by Charlotte Hunter from Mike Hillyer at Store 1.
+select * from film limit 5;
+
+</string>
+			<key>table</key>
+			<string>staff</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>SELECT
+	floor(avg((length/60))) as duration_hours,
+	floor(avg(length % 60)) as duration_minutes
+from
+	film</string>
+		<string>-- How many films include Behind the Scenes content?
+select
+	count(film_id) as behind_the_scenes
+from
+	film
+where
+	special_features like '%Behind the Scenes%'</string>
+		<string>-- How many films include Behind the Scenes content?
+select
+	count(film_id) as behind_the_scenes
+from
+	film
+where
+	special_features = '%Behind the Scenes%'</string>
+		<string>-- How many films include Behind the Scenes content?
+select
+	count(film_) as behind_the_scenes
+from
+	film
+where
+	special_features = '%Behind the Scenes%'</string>
+		<string>#check for result
+
+-- Add rental for movie "Academy Dinosaur" by Charlotte Hunter from Mike Hillyer at Store 1.
+select * from rental limit 5</string>
+		<string>#check for result
+
+-- Add rental for movie "Academy Dinosaur" by Charlotte Hunter from Mike Hillyer at Store 1.
+select * from rentals limit 5</string>
+		<string>#check entry for tammy
+select * from staff</string>
+		<string>#check table structure fro staff
+insert into staff (staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update) #add values to staff table
+values (3, 'TAMMY', 'SANDERS',79,'TAMMY.SANDERS@sakilastaff.org', 2, 1, 'TAMMY', 'password',CURDATE())</string>
+		<string>#check table structure fro staff
+delete from staff where first_name = 'TAMMY'</string>
+		<string>select * from staff</string>
+		<string>insert into staff (staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update)
+values (3, 'TAMMY', 'SANDERS',79,'TAMMY.SANDERS@sakilacustomer.org', 2, 1, 'TAMMY', 'password',CURDATE())</string>
+		<string>insert into staff (staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update)
+values (3, 'TAMMY', 'SANDERS',79,'TAMMY.SANDERS@sakilacustomer.org', 2, 1, 'TAMMY', password',CURDATE());</string>
+		<string>insert into staff (staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update)
+values (3, 'TAMMY', 'SANDERS',79,'TAMMY.SANDERS@sakilacustomer.org', 2, 1, 'password',CURDATE())</string>
+		<string>insert into staff (staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update)
+values (2, 'TAMMY', 'SANDERS',79,'TAMMY.SANDERS@sakilacustomer.org', 2, 1, 'password',CURDATE())</string>
+		<string>-- A new person is hired to help Jon. Her name is TAMMY SANDERS, and she is a customer. Update the database accordingly.
+select * from customer where first_name = 'Tammy'</string>
+		<string>-- A new person is hired to help Jon. Her name is TAMMY SANDERS, and she is a customer. Update the database accordingly.
+select * from customer where first_name = 'Tammy'
+select * from staff</string>
+		<string>-- Drop column picture from staff.
+alter table staff
+drop column picture</string>
+		<string>-- How many films include Behind the Scenes content?
+select
+	count(film_id) as behind_the_scenes
+from
+	film
+where
+	special_features = 'Behind the Scenes'</string>
+		<string>-- How many films include Behind the Scenes content?
+select
+	count(distinct film_id) as behind_the_scenes
+from
+	film
+where
+	special_features = 'Behind the Scenes'</string>
+		<string>-- How many films include Behind the Scenes content?
+select
+	count(where special_features = 'Behind the Scenes') as behind_the_scenes
+from
+	film</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
