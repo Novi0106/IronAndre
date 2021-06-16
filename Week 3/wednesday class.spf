@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>bank</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>6954207335203041666</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {659, 807}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>create database books;
+use books;
+
+create table authors
+(author_id int not null, name varchar(20), country varchar(20), primary key (author_id));
+
+create table books
+(book_id int not null, author_id int, bookname varchar(20),primary key (book_id));
+
+drop table authors;
+
+create table authors
+(author_id int auto_increment not null,
+name varchar(20) default null,
+country varchar(20) default null,
+primary key (author_id));
+
+insert into `authors` (name)
+values ('Mary Beard');
+
+insert into `authors` (name)
+values ('J.K. Rowling'), ('Neil Gaiman');
+
+# insert multiple columns and rows
+
+insert into authors (name, country)
+values ('H. Rosling', 'Sweden'), ('M. Bulgakov', 'Russia');
+
+select* 
+from authors;
+
+# add missing values
+update authors set country = 'Britain'
+where author_id in (1, 2, 3);
+
+# add a book into the book table
+insert into books (bookname, author_id)
+values ("The Master and Margarita", 5),
+("American Gods", 3),
+("SPQR", 1),
+("Harry Potter and the Philosopher's Stone",2);
+
+insert into books (bookname, author_id)
+values ("Harry Potter and the Goblet of Fire",2);
+
+
+# increase varchar limit for bookname
+alter table books
+modify bookname varchar(50);
+
+drop table if exists books;
+
+create table books
+(book_id INT AUTO_INCREMENT NOT NULL, 
+author_id INT NOT NULL, 
+bookname VARCHAR(50), 
+PRIMARY KEY (book_id),
+KEY idx_fk_author_id (author_id),
+CONSTRAINT fk_author_id FOREIGN KEY (author_id)
+REFERENCES authors(author_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+select*from books;
+
+# add a column 'i have read' tinyint default false
+
+alter table books
+add column I_have_read_it tinyint default 0;
+
+update books set I_have_read_it = true;
+
+
+select books.*, authors.name
+from books
+right join authors on authors.author_id = books.author_id;
+
+
+select l.loan_id, a.district_id, a.frequency
+from account a
+join loan l on l.account_id = a.account_id
+where duration = 12
+order by a.district_id;
+
+select a.district_id, sum(l.amount) as total_amount, avg(l.amount) as average_amount
+from account a
+join loan l on l.account_id = a.account_id
+group by a.district_id
+order by a.district_id;
+</string>
+			<key>table</key>
+			<string>loan</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select a.district_id, sum(l.amount) as total_amount, avg(l.amount) as average_amount
+from account a
+join loan l on l.account_id = a.account_id
+group by a.district_id
+order by a.district_id</string>
+		<string>select a.district_id, sum(l.amount) as total amount, avg(l.amount) as average amount
+from account a
+join loan l on l.account_id = a.account_id
+group by a.district_id
+order by a.district_id</string>
+		<string>select a.district_id, sum(l.amount), avg(l.amount)
+from account a
+join loan l on l.account_id = a.account_id
+group by a.district_id
+order by a.district_id</string>
+		<string>select a.district_id, sum(l.amount), avg(l.amount)
+from account a
+join loan l on l.account_id = a.account_id
+order by a.district_id</string>
+		<string>select a.district_id, l.(sum(amount)), l.(avg(amount))
+from account a
+join loan l on l.account_id = a.account_id
+order by a.district_id</string>
+		<string>select a.district_id, l.sum(amount), l.avg(amount)
+from account a
+join loan l on l.account_id = a.account_id
+order by a.district_id</string>
+		<string>select l.loan_id, a.district_id, a.frequency
+from account a
+join loan l on l.account_id = a.account_id
+where duration = 12
+order by a.district_id</string>
+		<string>select l.loan_id, a.district_id, a.frequency
+from account a
+join loan l on l.account_id = a.account_id
+where duration = 12</string>
+		<string>select a.account_id, l.loan_id, district_id, frequency, l.duration
+from account a
+join loan l on l.account_id = a.account_id
+where duration = 12</string>
+		<string>select a.account_id, loan.loan_id, district_id, frequency, loan.duration
+from account a
+join loan l on l.account_id = a.account_id
+where duration = 12</string>
+		<string>select account.account_id, loan.loan_id, district_id, frequency, loan.duration
+from account a
+join loan l on l.account_id = a.account_id
+where duration = 12</string>
+		<string>select account.account_id, loan.loan_id, district_id, frequency, loan.duration
+from account
+join loan on loan.account_id = account.account_id
+where duration = 12</string>
+		<string>select account.account_id, loan.loan_id, district_id, frequency, loan.duration
+from account
+join loan on loan.loan_id = account.loan_id
+where duration = 12</string>
+		<string>select account_id, loan.loan_id, district_id, frequency, loan.duration
+from account
+join loan on loan.loan_id = account.loan_id
+where duration = 12</string>
+		<string>select account_id, loan.loan_id, district_id, frequency, loan.duration,
+from account
+join loan on loan.loan_id = account.loan_id
+where duration = 12</string>
+		<string>select books.*, authors.name
+from books
+right join authors on authors.author_id = books.author_id</string>
+		<string>select books.*, authors.name
+from books
+left join authors on authors.author_id = books.author_id</string>
+		<string>select *, authors.name
+from books
+left join authors on authors.author_id = books.author_id</string>
+		<string>select *, authors.name
+from books
+left join authors on author_id = books.author_id</string>
+		<string>select *, authors.name
+from books
+left join authors on author_id = author_id</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
