@@ -1,6 +1,6 @@
 -- Use the RANK() and the table of your choice rank films by length (filter out the rows that have nulls or 0s in length column). In your output, only select the columns title, length, and the rank.
 
-select title, length, rank() over (partition by title order by length desc) as length_ranking
+select title, length, rank() over (order by length desc) as length_ranking
 from film f
 where length <> 0;
 
