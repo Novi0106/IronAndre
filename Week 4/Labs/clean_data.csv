@@ -1,0 +1,117 @@
+loans_taken,district,region,nr_of_inhabitants,nr_of_entrepreneurs,total_loans_taken,average_loan_amount,customer_status
+6,Benesov,central Bohemia,88884,132,887952.0,147992.0,good
+2,Beroun,central Bohemia,75232,111,527676.0,263838.0,bad
+4,Beroun,central Bohemia,75232,111,933120.0,233280.0,good
+1,Blansko,south Moravia,107911,99,307200.0,307200.0,bad
+6,Blansko,south Moravia,107911,99,883824.0,147304.0,good
+1,Breclav,south Moravia,124605,126,276660.0,276660.0,bad
+6,Breclav,south Moravia,124605,126,900132.0,150022.0,good
+5,Brno - mesto,south Moravia,387570,140,1199472.0,239894.0,bad
+1,Brno - venkov,south Moravia,157042,111,63972.0,63972.0,bad
+9,Brno - venkov,south Moravia,157042,111,1168260.0,129807.0,good
+3,Bruntal,north Moravia,106054,109,882192.0,294064.0,bad
+3,Bruntal,north Moravia,106054,109,395604.0,131868.0,good
+6,Ceska Lipa,north Bohemia,105058,118,462684.0,77114.0,good
+1,Ceske Budejovice,south Bohemia,177686,135,333648.0,333648.0,bad
+7,Ceske Budejovice,south Bohemia,177686,135,1677276.0,239611.0,good
+1,Cesky Krumlov,south Bohemia,58796,124,87216.0,87216.0,bad
+6,Cesky Krumlov,south Bohemia,58796,124,497112.0,82852.0,good
+4,Cheb,west Bohemia,87419,102,438816.0,109704.0,good
+1,Chomutov,north Bohemia,125236,100,174744.0,174744.0,bad
+8,Chomutov,north Bohemia,125236,100,749172.0,93647.0,good
+2,Chrudim,east Bohemia,105606,97,543204.0,271602.0,bad
+6,Chrudim,east Bohemia,105606,97,888480.0,148080.0,good
+4,Decin,north Bohemia,133777,116,509952.0,127488.0,good
+1,Domazlice,west Bohemia,58400,100,260640.0,260640.0,bad
+1,Domazlice,west Bohemia,58400,100,136368.0,136368.0,good
+1,Frydek - Mistek,north Moravia,228848,96,68400.0,68400.0,bad
+1,Havlickuv Brod,east Bohemia,95907,87,103680.0,103680.0,bad
+6,Havlickuv Brod,east Bohemia,95907,87,1089528.0,181588.0,good
+7,Hl.m. Praha,Prague,1204953,167,2027136.0,289591.0,bad
+6,Hodonin,south Moravia,161954,116,1191504.0,198584.0,good
+1,Hradec Kralove,east Bohemia,161854,125,71976.0,71976.0,bad
+4,Hradec Kralove,east Bohemia,161854,125,558696.0,139674.0,good
+1,Jablonec n. Nisou,north Bohemia,88768,130,127200.0,127200.0,good
+2,Jesenik,north Moravia,42821,124,604128.0,302064.0,bad
+6,Jesenik,north Moravia,42821,124,1334304.0,222384.0,good
+7,Jicin,east Bohemia,77917,132,851364.0,121623.0,good
+4,Jihlava,south Moravia,109164,96,366096.0,91524.0,good
+1,Jindrichuv Hradec,south Bohemia,93931,107,60156.0,60156.0,bad
+10,Jindrichuv Hradec,south Bohemia,93931,107,1279416.0,127942.0,good
+2,Karlovy Vary,west Bohemia,122603,128,224064.0,112032.0,bad
+6,Karlovy Vary,west Bohemia,122603,128,621132.0,103522.0,good
+3,Karvina,north Moravia,285387,81,700872.0,233624.0,bad
+1,Kladno,central Bohemia,149893,109,129312.0,129312.0,bad
+6,Kladno,central Bohemia,149893,109,977208.0,162868.0,good
+1,Klatovy,west Bohemia,88757,113,99696.0,99696.0,bad
+2,Klatovy,west Bohemia,88757,113,171180.0,85590.0,good
+10,Kolin,central Bohemia,95616,118,1901160.0,190116.0,good
+1,Kromeriz,south Moravia,108871,106,253512.0,253512.0,bad
+8,Kromeriz,south Moravia,108871,106,706560.0,88320.0,good
+3,Kutna Hora,central Bohemia,77963,126,882744.0,294248.0,bad
+6,Kutna Hora,central Bohemia,77963,126,1213236.0,202206.0,good
+7,Liberec,north Bohemia,159617,131,971292.0,138756.0,good
+7,Litomerice,north Bohemia,114006,123,1116228.0,159461.0,good
+13,Louny,north Bohemia,85852,104,1540056.0,118466.0,good
+6,Melnik,central Bohemia,94725,130,557796.0,92966.0,good
+1,Mlada Boleslav,central Bohemia,112065,127,196800.0,196800.0,bad
+4,Mlada Boleslav,central Bohemia,112065,127,420720.0,105180.0,good
+5,Most,north Bohemia,119895,90,615060.0,123012.0,good
+6,Nachod,east Bohemia,112709,117,1768380.0,294730.0,good
+1,Novy Jicin,north Moravia,161227,102,177744.0,177744.0,bad
+5,Novy Jicin,north Moravia,161227,102,516624.0,103325.0,good
+9,Nymburk,central Bohemia,81344,149,1005084.0,111676.0,good
+2,Olomouc,north Moravia,226122,110,494952.0,247476.0,bad
+12,Olomouc,north Moravia,226122,110,1792644.0,149387.0,good
+3,Opava,north Moravia,182027,90,466344.0,155448.0,bad
+5,Opava,north Moravia,182027,90,1026732.0,205346.0,good
+3,Ostrava - mesto,north Moravia,323870,100,476460.0,158820.0,bad
+10,Pardubice,east Bohemia,162580,111,1648368.0,164837.0,good
+4,Pelhrimov,south Bohemia,74062,119,415692.0,103923.0,good
+3,Pisek,south Bohemia,70699,131,477492.0,159164.0,good
+9,Plzen - jih,west Bohemia,67298,110,1294188.0,143799.0,good
+1,Plzen - mesto,west Bohemia,170449,131,272220.0,272220.0,bad
+5,Plzen - mesto,west Bohemia,170449,131,484584.0,96917.0,good
+7,Plzen - sever,west Bohemia,72541,112,1338984.0,191283.0,good
+1,Prachatice,south Bohemia,51428,120,407952.0,407952.0,bad
+13,Prachatice,south Bohemia,51428,120,1948740.0,149903.0,good
+5,Praha - vychod,central Bohemia,92084,141,859464.0,171893.0,good
+1,Praha - zapad,central Bohemia,75637,154,137904.0,137904.0,bad
+10,Praha - zapad,central Bohemia,75637,154,1095192.0,109519.0,good
+4,Prerov,north Moravia,138032,99,695628.0,173907.0,good
+1,Pribram,central Bohemia,107870,137,76908.0,76908.0,bad
+7,Pribram,central Bohemia,107870,137,1222284.0,174612.0,good
+1,Prostejov,south Moravia,110643,115,189696.0,189696.0,bad
+8,Prostejov,south Moravia,110643,115,949116.0,118640.0,good
+1,Rakovnik,central Bohemia,53921,123,61656.0,61656.0,bad
+7,Rakovnik,central Bohemia,53921,123,899088.0,128441.0,good
+1,Rokycany,west Bohemia,45714,113,222180.0,222180.0,bad
+7,Rokycany,west Bohemia,45714,113,1107024.0,158146.0,good
+1,Rychnov nad Kneznou,east Bohemia,78955,124,137880.0,137880.0,bad
+5,Rychnov nad Kneznou,east Bohemia,78955,124,616164.0,123233.0,good
+3,Semily,east Bohemia,75685,155,276180.0,92060.0,good
+1,Sokolov,west Bohemia,94812,100,96396.0,96396.0,bad
+1,Sokolov,west Bohemia,94812,100,52128.0,52128.0,good
+3,Strakonice,south Bohemia,70646,120,640020.0,213340.0,bad
+3,Strakonice,south Bohemia,70646,120,584472.0,194824.0,good
+5,Sumperk,north Moravia,127369,107,829644.0,165929.0,good
+3,Svitavy,east Bohemia,102609,94,522564.0,174188.0,bad
+9,Svitavy,east Bohemia,102609,94,1577520.0,175280.0,good
+2,Tabor,south Bohemia,103347,123,60552.0,30276.0,bad
+5,Tabor,south Bohemia,103347,123,904392.0,180878.0,good
+2,Tachov,west Bohemia,51313,108,236460.0,118230.0,bad
+6,Tachov,west Bohemia,51313,108,723324.0,120554.0,good
+6,Teplice,north Bohemia,128118,97,872748.0,145458.0,good
+1,Trebic,south Moravia,117897,107,51360.0,51360.0,bad
+5,Trebic,south Moravia,117897,107,578640.0,115728.0,good
+6,Trutnov,east Bohemia,121947,131,1076580.0,179430.0,good
+10,Uherske Hradiste,south Moravia,145688,109,1682040.0,168204.0,good
+3,Usti nad Labem,north Bohemia,118650,114,347484.0,115828.0,good
+1,Usti nad Orlici,east Bohemia,139012,108,290700.0,290700.0,bad
+13,Usti nad Orlici,east Bohemia,139012,108,1922460.0,147882.0,good
+6,Vsetin,north Moravia,148545,113,490980.0,81830.0,good
+7,Vyskov,south Moravia,86513,110,777192.0,111027.0,good
+7,Zdar nad Sazavou,south Moravia,125832,102,1326540.0,189506.0,good
+1,Zlin,south Moravia,197099,145,293880.0,293880.0,bad
+1,Znojmo,south Moravia,114200,105,187224.0,187224.0,bad
+5,Znojmo,south Moravia,114200,105,757152.0,151430.0,good

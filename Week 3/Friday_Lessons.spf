@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>bank</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>6954207335203041666</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {687, 792}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string># windowfx() OVER (partition by order by)
+
+# row_no window fx - top 5 loans by bad status B and D
+select loan_id, amount, status,
+row_number() OVER (partition by status order by amount DESC) as row_no
+from loan
+where status in ('B','D')
+order by row_no
+limit 10;
+
+# start with the inner query of a sub-query
+
+select loan_id, status, amount, month(convert(date,date)) as MONTH
+from loan
+where loan_id in
+(
+select loan_id
+from loan
+where status in ('B','D') and amount &gt; 400000
+);
+
+
+select loan_id, status, amount, month(convert(date,date)) as MONTH
+from loan
+where amount &gt;
+(
+select avg(amount)
+from loan
+)
+order by amount desc;
+
+
+select round(avg(num_trans)) from
+(
+select account_id, count(trans_id) num_trans
+from trans
+group by account_id)
+t1;
+
+select t.account_id, a.frequency, count(t.trans_id) as num_trans
+from trans t
+join account a
+using (account_id)
+group by t.account_id
+having count(t.trans_id) &gt;
+(
+select round(avg(num_trans)) from
+(
+select account_id, count(trans_id) num_trans
+from trans
+group by account_id)
+t1);
+
+-- Central bohemia subquery vs. join comparison
+
+select account_id
+from account
+where district_id in
+(
+select A1
+from district where A3 = "central Bohemia"
+);
+
+select a.account_id
+from account a
+join district d on d.A1 = a.district_id
+where d.A3 = 'central Bohemia';</string>
+			<key>table</key>
+			<string>district</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select a.account_id
+from account a
+join district d on d.A1 = a.district_id
+where d.A3 = 'central Bohemia'</string>
+		<string>-- Central bohemia subquery vs. join comparison
+
+select account_id
+from account
+where district_id in
+(
+select A1
+from district where A3 = "central Bohemia"
+)</string>
+		<string>select account_id
+from account
+where district_id in
+(
+select A1
+from district where A3 = "Central Bohemia"
+)</string>
+		<string>select a.account_id
+from account a
+join district d on d.A1 = a.district_id
+where d.A3 = 'Central Bohemia'</string>
+		<string>)</string>
+		<string>select A1 from district where A3 = "Central Bohemia"</string>
+		<string>select district_id from district where A3 = "Central Bohemia"</string>
+		<string>select t.account_id, a.frequency, count(t.trans_id) as num_trans
+from trans t
+join account a
+using (account_id)
+group by t.account_id
+having count(t.trans_id) &gt;
+(select round(avg(num_trans)) from
+(
+select account_id, count(trans_id) num_trans
+from trans
+group by account_id)
+t1)</string>
+		<string>select t.account_id, a.frequency, count(t.trans_id) as num_trans
+from trans t
+join account a
+using (account_id)
+group by t.account_id
+having count(t.trans_id) &gt;
+(select loan_id, status, amount, month(convert(date,date)) as MONTH
+from loan
+where amount &gt;
+(
+select avg(amount)
+from loan
+)
+order by amount desc</string>
+		<string>select t.account_id, a.frequency, count(t.trans_id) as num_trans
+from trans t
+join account a
+using (account_id)
+group by t.account_id
+having count(t.trans_id) &gt; (t1)</string>
+		<string>select t.account_id, a.frequency, count(t.trans_id) as num_trans
+from trans t
+join account a
+using (account_id)
+group by t.account_id
+having count(t.trans_id) &gt; t1</string>
+		<string>select round(avg(num_trans)) from
+(
+select account_id, count(trans_id) num_trans
+from trans
+group by account_id)
+t1</string>
+		<string>select
+avg(num_trans) from
+(
+select account_id, count(distinct trans_id)
+from trans
+as num_trans
+group by account_id
+)
+from trans</string>
+		<string>select account_id,
+avg(num_trans) from
+(
+select count(distinct trans_id)
+from trans
+as num_trans
+)
+from trans
+group by account_id</string>
+		<string>select
+avg(num_trans) from
+(
+select count(distinct trans_id)
+from trans
+as num_trans
+)
+from trans
+group by account_id</string>
+		<string>select
+avg(
+select count(distinct trans_id)
+from trans
+as num_trans)
+from trans
+group by account_id</string>
+		<string>select account_id,
+avg(
+select count(distinct trans_id)
+from trans
+) as num_trans
+from trans
+group by account_id</string>
+		<string>select account_id,
+avg((
+select count(distinct trans_id)
+from trans
+)) as avg_count_trans
+from trans
+group by account_id</string>
+		<string>select account_id,
+avg((
+select count(distinct trans_id)
+from trans
+)) as avg_count_trans
+from trans</string>
+		<string>select account_id, avg(
+select count(distinct trans_id)
+from trans
+) as avg_count_trans
+from trans</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
