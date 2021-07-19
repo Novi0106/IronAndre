@@ -85,21 +85,27 @@ def clustering():
 # %%
 def spotify_recommendation(kmeans, track_cluster, sp, song):
     import pandas as pd
+    from IPython.display import IFrame
     # compare user input
-
+    
+    
     song_id = sp.search(q = song, type = 'track', limit=1)['tracks']['items'][0]['uri']
-    #song_check = sp.search(q = song, type = 'track', limit=1)['tracks']['items'][0]['name']
-    #artist_check = sp.search(q = song, type = 'track', limit=1)['tracks']['items'][0]['artists'][0]['name']
-
-    #answer = input("Do you mean " + song_check  + " by " + artist_check + "?")
-
-    #if answer == 'yes':
+    
     features = pd.DataFrame(sp.audio_features(song_id)).drop(columns = ['type','id','uri','track_href','analysis_url', 'time_signature'])
     prediction = kmeans.predict(features)[0]
     suggestion = track_cluster[track_cluster.cluster == prediction].sample(1)
     suggestion = suggestion['name'].values[0]
     artist = sp.search(q = suggestion, type = 'track', limit=1)['tracks']['items'][0]['artists'][0]['name']
-    print(" How about trying out " + str(suggestion) + " by " + str(artist) + "?")
+    
+    track_id = sp.search(q = suggestion, type = 'track', limit=1)['tracks']['items'][0]['id']
+    
+    message = print(" How about trying out " + str(suggestion) + " by " + str(artist) + "?")
+    display(IFrame(src=f"https://open.spotify.com/embed/track/{track_id}",
+                             width="320",
+                             height="80",
+                             frameborder="0",
+                             allowtransparency="true",
+                             allow="encrypted-media",))
 
 
 # %%
